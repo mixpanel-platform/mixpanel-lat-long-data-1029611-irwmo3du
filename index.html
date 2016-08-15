@@ -163,11 +163,9 @@ function updateCustomMarkers( event ) {
     }
   */
   var query = $('#query').html()
-  debugger
   MP.api.jql(query).done(function(data){
     debugger
     _.each(data,function(val){
-      debugger
       map.dataProvider.images.push(val)
     })
     _.each(map.dataProvider.images, function(image){
