@@ -168,8 +168,7 @@ function updateCustomMarkers( event ) {
     debugger
     _.each(data,function(val){
       debugger
-        // reposition the element accoridng to coordinates
-    
+      map.dataProvider.images.push(val)
     })
     _.each(map.dataProvider.images, function(image){
        if ( 'undefined' == typeof image.externalElement ) 
