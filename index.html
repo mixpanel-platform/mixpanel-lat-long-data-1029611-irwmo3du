@@ -81,7 +81,10 @@ var map = AmCharts.makeChart( "chartdiv", {
     "map": "worldLow",
   }
 } );
-updateCustomMarkers()
+
+// add events to recalculate map position when the map is moved or zoomed
+map.addListener( "init", updateCustomMarkers );
+
 // this function will take current images on the map and create HTML elements for them
 function updateCustomMarkers( event ) {
   // get map object
@@ -100,7 +103,7 @@ function updateCustomMarkers( event ) {
   var query = $('#query').html()
   MP.api.jql(query).done(function(data){
     debugger
-    _.each(data, function(val){
+    _.each(data,function(val){
       map.dataProvider.images.push(val)
     })
     map.validateData();
