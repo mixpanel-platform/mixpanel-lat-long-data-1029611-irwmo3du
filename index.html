@@ -151,7 +151,6 @@ map.addListener( "positionChanged", updateCustomMarkers );
 function updateCustomMarkers( event ) {
   // get map object
   var map = event.chart;
-  debugger
   // go through all of the images
   
   /*
@@ -164,6 +163,7 @@ function updateCustomMarkers( event ) {
     }
   */
   var query = $('#query').html()
+  debugger
   MP.api.jql(query).done(function(jql){
     debugger
     _.each(jql.json,function(val){
