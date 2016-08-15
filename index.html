@@ -114,7 +114,13 @@
       to_date:   '2016-08-15'
     })
     .groupBy([ e => round(e.properties.lat), e => round(e.properties.long)], mixpanel.reducer.count())
-    .map(function(e) { return {longitude: e.key[1], latitude: e.key[0], title: e.value} });
+    .map(function(e) { 
+      return {
+        longitude: e.key[1], 
+        latitude: e.key[0], 
+        title: e.value,
+      } 
+    });
   }
 </script>
 <script>
@@ -177,6 +183,7 @@ function updateCustomMarkers( event ) {
       image.zoomLevel = 5
       image.svgPath = targetSVG
     })
+    map.validateData();
   })
 }
 
