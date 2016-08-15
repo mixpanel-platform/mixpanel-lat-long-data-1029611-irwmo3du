@@ -164,9 +164,9 @@ function updateCustomMarkers( event ) {
   */
   var query = $('#query').html()
   debugger
-  MP.api.jql(query).done(function(jql){
+  MP.api.jql(query).done(function(data){
     debugger
-    _.each(jql.json,function(val){
+    _.each(data,function(val){
       debugger
         // reposition the element accoridng to coordinates
     
