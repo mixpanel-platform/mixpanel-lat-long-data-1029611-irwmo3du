@@ -122,6 +122,7 @@
  * This example uses pulsating circles CSS by Kevin Urrutia
  * http://kevinurrutia.tumblr.com/post/16411271583/creating-a-css3-pulsating-circle
  */
+var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
 
 var map = AmCharts.makeChart( "chartdiv", {
   "type": "map",
@@ -169,48 +170,16 @@ function updateCustomMarkers( event ) {
       map.dataProvider.images.push(val)
     })
     _.each(map.dataProvider.images, function(image){
-       if ( 'undefined' == typeof image.externalElement ) 
-        image.externalElement = createCustomMarker( image );
       var xy = map.coordinatesToStageXY( image.longitude, image.latitude );
       image.externalElement.style.top = xy.y + 'px';
       image.externalElement.style.left = xy.x + 'px';
       image.scale = 0.5
       image.zoomLevel = 5
+      image.svgPath = targetSVG,
     })
   })
 }
 
-// this function creates and returns a new marker element
-function createCustomMarker( image ) {
-  // create holder
-  var holder = document.createElement( 'div' );
-  holder.className = 'map-marker';
-  holder.title = image.title;
-  holder.style.position = 'absolute';
-
-  // maybe add a link to it?
-  if ( undefined != image.url ) {
-    holder.onclick = function() {
-      window.location.href = image.url;
-    };
-    holder.className += ' map-clickable';
-  }
-
-  // create dot
-  var dot = document.createElement( 'div' );
-  dot.className = 'dot';
-  holder.appendChild( dot );
-
-  // create pulse
-  var pulse = document.createElement( 'div' );
-  pulse.className = 'pulse';
-  holder.appendChild( pulse );
-
-  // append the marker to the map container
-  image.chart.chartDiv.appendChild( holder );
-
-  return holder;
-}
 </script>
 
 <!-- HTML -->
