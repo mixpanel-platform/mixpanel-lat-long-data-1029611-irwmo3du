@@ -119,6 +119,9 @@
         longitude: e.key[1], 
         latitude: e.key[0], 
         title: e.value,
+        scale: 0.5,
+        zoomLevel: 5,
+        svgPath: "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z"
       } 
     })
     .filter(e => Math.random() > .999);
@@ -129,7 +132,7 @@
  * This example uses pulsating circles CSS by Kevin Urrutia
  * http://kevinurrutia.tumblr.com/post/16411271583/creating-a-css3-pulsating-circle
  */
-var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
+
 
 var map = AmCharts.makeChart( "chartdiv", {
   "type": "map",
@@ -153,7 +156,7 @@ var map = AmCharts.makeChart( "chartdiv", {
 } );
 
 // add events to recalculate map position when the map is moved or zoomed
-map.addListener( "positionChanged", updateCustomMarkers );
+map.addListener( "init", updateCustomMarkers );
 
 // this function will take current images on the map and create HTML elements for them
 function updateCustomMarkers( event ) {
@@ -175,14 +178,6 @@ function updateCustomMarkers( event ) {
     debugger
     _.each(data,function(val){
       map.dataProvider.images.push(val)
-    })
-    _.each(map.dataProvider.images, function(image){
-      var xy = map.coordinatesToStageXY( image.longitude, image.latitude );
-      // image.externalElement.style.top = xy.y + 'px';
-      // image.externalElement.style.left = xy.x + 'px';
-      image.scale = 0.5
-      image.zoomLevel = 5
-      image.svgPath = targetSVG
     })
     map.validateData();
   })
