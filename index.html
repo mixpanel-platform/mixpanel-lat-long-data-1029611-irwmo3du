@@ -173,7 +173,9 @@ function updateCustomMarkers( event ) {
         image.externalElement = createCustomMarker( image );
       var xy = map.coordinatesToStageXY( image.longitude, image.latitude );
       image.externalElement.style.top = xy.y + 'px';
-      image.externalElement.style.left = xy.x + 'px';      
+      image.externalElement.style.left = xy.x + 'px';
+      image.scale = 0.5
+      image.zoomLevel = 5
     })
   })
 }
