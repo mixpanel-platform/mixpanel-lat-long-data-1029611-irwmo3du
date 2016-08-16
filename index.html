@@ -104,7 +104,7 @@ function updateCustomMarkers( event ) {
   MP.api.jql(query).done(function(data){
     debugger
     _.each(data,function(val){
-      map.dataProvider.push(val)
+      map.dataProvider.images.push(val)
     })
     map.validateData();
   })
