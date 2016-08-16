@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
+
 <!-- Chart code -->
 <script id="query">
   function round(prop){
@@ -43,8 +44,8 @@
     .groupBy([ e => round(e.properties.lat), e => round(e.properties.long)], mixpanel.reducer.count())
     .map(function(e) { 
       return {
-        longitude: e.key[1].toFixed(4), 
-        latitude: e.key[0].toFixed(4), 
+        longitude: e.key[1], 
+        latitude: e.key[0], 
         title: e.value,
         scale: 0.5,
         zoomLevel: 5,
