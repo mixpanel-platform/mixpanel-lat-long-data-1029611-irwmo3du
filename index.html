@@ -43,8 +43,8 @@
     .groupBy([ e => round(e.properties.lat), e => round(e.properties.long)], mixpanel.reducer.count())
     .map(function(e) { 
       return {
-        longitude: e.key[1], 
-        latitude: e.key[0], 
+        longitude: e.key[1].toFixed(4), 
+        latitude: e.key[0].toFixed(4), 
         title: e.value,
         scale: 0.5,
         zoomLevel: 5,
